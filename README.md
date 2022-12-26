@@ -5,9 +5,9 @@ It is based on the boost asio examples
 http://www.boost.org/doc/libs/1_55_0/doc/html/boost_asio/example/cpp03/http/client/async_client.cpp and 
 http://www.boost.org/doc/libs/1_55_0/doc/html/boost_asio/example/cpp03/ssl/client.cpp
 
-See https://pragmaticjoe.blogspot.com/2015/02/boostasio-https-client.html for more details.
+See https://pragmaticjoe.gitlab.io/posts/2015-02-13-boost.asio-https-client/ for more details.
 
-The resulting applcation creates a connection to a specified server and path and make a GET request using a secure SSL connection.
+The resulting application creates a connection to a specified server and path and make a GET request using a secure SSL connection.
 
 Building (Linux):
 ```

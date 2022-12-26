@@ -72,7 +72,7 @@ private:
     bool verify_certificate(bool preverified,
                             boost::asio::ssl::verify_context& ctx)
     {
-        std::cout << "verify_certificate (preverified " << preverified << ") ...\n";
+        std::cout << "verify_certificate (preverified " << preverified << " ) ...\n";
         // The verify callback can be used to check whether the certificate that is
         // being presented is valid for the peer. For example, RFC 2818 describes
         // the steps involved in doing this for HTTPS. Consult the OpenSSL
@@ -81,15 +81,13 @@ private:
         // certificate authority.
 
         // In this example we will simply print the certificate's subject name.
-        // Anyway, as far as I understand the code, this is only a dummy verifaction.
         char subject_name[256];
         X509* cert = X509_STORE_CTX_get_current_cert(ctx.native_handle());
         X509_NAME_oneline(X509_get_subject_name(cert), subject_name, 256);
         std::cout << "Verifying " << subject_name << "\n";
 
-        // The verification is not working (I don't know why).
-        // So we simply return true;
-        return true || preverified;
+        // dummy verification
+        return true;
     }
 
     void handle_connect(const boost::system::error_code& err)
@@ -110,7 +108,7 @@ private:
 
     void handle_handshake(const boost::system::error_code& error)
     {
-        std::cout << "handle_handshake\n";
+        std::cout << "handle_handshake start \n";
         if (!error)
         {
             std::cout << "Handshake OK " << "\n";
@@ -131,7 +129,7 @@ private:
 
     void handle_write_request(const boost::system::error_code& err)
     {
-        std::cout << "handle_write_request\n";
+        std::cout << "handle_write_request start \n";
         if (!err)
         {
             // Read the response status line. The response_ streambuf will
@@ -149,7 +147,7 @@ private:
 
     void handle_read_status_line(const boost::system::error_code& err)
     {
-        std::cout << "handle_read_status_line\n";
+        std::cout << "handle_read_status_line start \n";
         if (!err)
         {
             // Check that response is OK.
@@ -244,7 +242,7 @@ int main(int argc, char* argv[])
   {
     if (argc != 2)
     {
-      std::cout << "Usage: async_client <url>\n";
+      std::cout << "Usage: https_client <url>\n";
       std::cout << "Example:\n";
       std::cout << "        https_client https://www.boost.org/LICENSE_1_0.txt\n";
       std::cout << "or\n";
